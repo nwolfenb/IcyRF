@@ -1,8 +1,7 @@
 function eps_eff = mixing_shape(eps_e,eps_i,f,N,orientation,model)
 % Calculates the effective permittivity based on the permittivity of the
 % environment and the volume fraction, permittivity, shape factor,
-% orientation and of the inclusion. The dimensionless parameter determines
-% the mixing model represented by the following equation:
+% orientation and of the inclusion for a specified mixing model.
 %
 % Syntax:
 % eps_eff = mixing_shape(eps_e,eps_i,f,N,orientation,model)
@@ -18,11 +17,12 @@ function eps_eff = mixing_shape(eps_e,eps_i,f,N,orientation,model)
 % Outputs:
 % eps_eff   Effective permittivity (vector)
 %
-% Source: 
+% Source:
 % Sihvola, A. H. (1999). Electromagnetic mixing formulas and applications
 % (No. 47). Iet.
-% Shokr (1998) Field Observations and Model Calculations of Dielectric
-% Properties of Arctic Sea Ice in the Microwave C-Band
+% Shokr, M. E. (1998). Field observations and model calculations of
+% dielectric properties of Arctic sea ice in the microwave C-band. IEEE
+% transactions on Geoscience and Remote Sensing, 36(2), 463-478.
 % 
 % Author:
 % Natalie Wolfenbarger
@@ -40,8 +40,10 @@ end
 %% Mixing
 if strcmp(model,'Maxwell Garnett')
     if strcmp(orientation,'aligned')
+        % Sihvola (1999) 
         eps_eff = eps_e + f*eps_e*(eps_i-eps_e)./(eps_e+(1-f).*N*(eps_i-eps_e));
     elseif strcmp(orientation,'random')
+        % Sihvola (1999) 
         sigma_num = (eps_i-eps_e)./(eps_e+N*(eps_i-eps_e));
         sigma_den = N*(eps_i-eps_e)./(eps_e+N*(eps_i-eps_e));
         eps_eff = eps_e + eps_e*((f/3)*sum(sigma_num)./(1-(f/3)*sum(sigma_den)));
@@ -50,6 +52,7 @@ if strcmp(model,'Maxwell Garnett')
     end
 elseif strcmp(model,'Polder-van Santen')
     if strcmp(orientation,'aligned')
+        % Shokr (1998) 
         for n = 1:length(N)
             a = (1-N(n))*ones(size(f));
             b = N(n)*eps_i-eps_e+N(n)*eps_e-f*(eps_i-eps_e);
@@ -59,8 +62,8 @@ elseif strcmp(model,'Polder-van Santen')
             eps_eff(:,n) = max(eps_roots,[],2,'ComparisonMethod','real');
         end
     elseif strcmp(orientation,'random')
-        error('Random Polder-van Santen for randomly orientated inclusions not yet implemented.')
         % Sihvola (1999)
+        error('Random Polder-van Santen for randomly orientated inclusions not yet implemented.')
     end
 else
     error('Model must be either "Maxwell Garnett" or "Polder-van Santen".')
