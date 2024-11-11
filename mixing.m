@@ -12,16 +12,16 @@ function eps_eff = mixing(eps_e,eps_i,f,v)
 % eps_eff = mixing(eps_e,eps_i,f,v)
 %
 % Inputs:
-% eps_e     Permittivity of the environment (scalar)
-% eps_i     Permittivity of the inclusion (scalar)
-% f         Volume fraction of inclusion (scalar or vector)
-% v         Dimensionless parameter which governs the mixing model (scalar)
+% eps_e     Environment Permittivity, scalar
+% eps_i     Inclusion Permittivity, scalar
+% f         Inclusion Volume Fraction, scalar or vector
+% v         Dimensionless parameter which governs the mixing model, scalar
 %           v=0: Maxwell Garnett
 %           v=2: Polder-van Santen (Bruggeman)
 %           v=3: Coherent Potential
 %
 % Outputs:
-% eps_eff   Effective permittivity (scalar or vector)
+% eps_eff   Effective Permittivity, scalar or vector
 %
 % Source: 
 % Sihvola, A. (2013). Homogenization principles and effect of mixing on

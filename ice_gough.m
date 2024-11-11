@@ -1,15 +1,15 @@
 function eps_ice = ice_gough(T)
-% Empirical model for the high frequency relative permittivity of ice as a
-% function of temperature.
+% Calculates the high frequency relative permittivity of ice as a function
+% of temperature using the empirical model of Gough et al. (1972).
 %
 % Syntax:
 % eps_ice = ice_permittivity(T)
 %
 % Inputs:
-% T     Temperature (C), scalar or vector
+% T         Temperature (C), scalar or vector
 %
 % Outputs:
-% eps_ice   Relative permittivity 
+% eps_ice   Relative Permittivity, scalar or vector
 %
 % Source:
 % Gough (1972)

@@ -1,19 +1,19 @@
 function eps_eff = debye(eps_s,eps_inf,tau,f,sigma)
-% Computes the relative permittivity using the single-relaxation Debye
+% Calculates the relative permittivity using the single-relaxation Debye
 % model.
 %
 % Syntax:
 % eps_eff = debye(eps_s,eps_inf,tau,f,sigma)
 %
 % Inputs:
-% eps_s     Static permittivity   
-% eps_inf   High frequency permittivity  
-% tau       Relaxation time (s)
-% f         Frequency (Hz)
-% sigma     Electrical Conductivity (S/m)
+% eps_s     Static Relative Permittivity, scalar or vector   
+% eps_inf   High Frequency Relative Permittivity, scalar or vector  
+% tau       Relaxation Time (s), scalar or vector
+% f         Frequency (Hz), scalar
+% sigma     DC Electrical Conductivity (S/m), scalar or vector
 %
 % Outputs:
-% eps_eff   Relative permittivity
+% eps_eff   Relative Permittivity, scalar or vector
 %
 % Source:
 % Ulaby and Long (2014)

@@ -1,18 +1,17 @@
 function [r,R] = EMcoef(eps_r1,eps_r2)
-% Computes the Fresnel reflection coefficient given the dielectric
-% properties of a two layered medium. The equation assumes the medium is
-% non-magnetic (relative permeability = 1).
+% Calculates the Fresnel power reflection coefficient given the relative
+% permittivity of a two-layered, non-magnetic medium.
 %
 % Syntax:
 % [r, R] = EMcoef(eps_r1,eps_r2)
 %
 % Inputs:
-% eps_r1    relative permittivity of first layer
-% eps_r2    relative permittivity of second layer
+% eps_r1    Relative Permittivity of first layer, scalar or vector
+% eps_r2    Relative Permittivity of second layer, scalar or vector
 %
 % Outputs:
-% R         Power reflection coefficient (dB)
-% r         Power reflection coefficient
+% R         Power Reflection Coefficient (dB), scalar or vector
+% r         Power Reflection Coefficient, scalar or vector
 %
 % Source:
 % Peters et al. (2005)

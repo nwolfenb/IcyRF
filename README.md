@@ -4,18 +4,22 @@ Code base to support RF remote sensing of icy environments.
 ## Functions
 ```
 eps_eff = debye(eps_s,eps_inf,tau,f,sigma)
+[alpha, Na] = EMalpha(eps_r,f)
+[r,R] = EMcoef(eps_r1,eps_r2)
 eps_ice = ice_debye(T,f,sigma)
 eps_ice = ice_gough(T)
 eps_ice = ice_permittivity(T,f,sigma)
 eps_eff = mixing(eps_e,eps_i,f,v)
 eps_eff = mixing_shape(eps_e,eps_i,f,N,orientation,model)
-eps = water_permittivity(T,f)
-[alpha, Na] = EMalpha(eps_r,f)
-[r,R] = EMcoef(eps_r1,eps_r2)
+eps_water = water_permittivity(T,f)
 ```
 
 ## Function Descriptions
 `debye(eps_s,eps_inf,tau,f,sigma` calculates the relative permittivity using the single-relaxation Debye model.
+
+`EMalpha(eps_r,f)` calculates the attenuation constant and  one-way attenutaion rate in dB/m from the complex relative permittivity and frequency.
+
+`EMcoef(eps_r1,eps_r2)` calculates the Fresnel power reflection coefficient given the dielectric properties of a two-layered, non-magnetic medium.
 
 `ice_debye(T,f,sigma)` calculates the relative permittivity of ice using the single-relaxation Debye model and the Debye parameters of Kawada (1978) in Matsuoka et al. (1996) and Gough et al. (1972).
 
@@ -26,7 +30,3 @@ eps = water_permittivity(T,f)
 `mixing_shape(eps_e,eps_i,f,N,orientation,model)` calculates the effective permittivity based on the permittivity of the environment and the volume fraction, permittivity, shape factor, orientation and of the inclusion for a specified mixing model.
 
 `water_permittivity(T,f)` calculates the relative permittivity of pure water as a function of temperature and frequeny using a single-relaxation Debye model.
-
-`EMalpha(eps_r,f)` calculates the attenuation constant and  one-way attenutaion rate in dB/m from the complex relative permittivity and frequency.
-
-`EMcoef(eps_r1,eps_r2)` calculates the Fresnel power reflection coefficient given the dielectric properties of a two-layered, non-magnetic medium.

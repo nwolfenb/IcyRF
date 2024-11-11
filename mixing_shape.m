@@ -7,18 +7,18 @@ function eps_eff = mixing_shape(eps_e,eps_i,f,N,orientation,model)
 % eps_eff = mixing_shape(eps_e,eps_i,f,N,orientation,model)
 %
 % Inputs:
-% eps_e         Permittivity of the environment (scalar)
-% eps_i         Permittivity of the inclusion (scalar)
-% f             Volume fraction of inclusion (scalar or vector)
-% N             Shape factor, [Nx Ny Nz] (vector)
+% eps_e         Environment Permittivity, scalar
+% eps_i         Inclusion Permittivity, scalar
+% f             Inclusion Volume Fraction, scalar or vector
+% N             Shape Factor, vector 
 %               Spheres:    [1/3 1/3 1/3]
 %               Discs:      [1 0 0]
 %               Needles:    [0 1/2 1/2]
-% orientation   "aligned" or "random" (string)
-% model         "Maxwell Garnett" or "PVD"
+% orientation   "aligned" or "random", string
+% model         "Maxwell Garnett" or "PVD", string
 %
 % Outputs:
-% eps_eff   Effective permittivity (scalar or vector)
+% eps_eff   Effective Permittivity, scalar or vector
 %
 % Source:
 % Sihvola, A. H. (1999). Electromagnetic mixing formulas and applications

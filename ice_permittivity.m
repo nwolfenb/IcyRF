@@ -9,10 +9,10 @@ function eps_ice = ice_permittivity(T,f,sigma)
 % Inputs:
 % T         Temperature (C), scalar or vector
 % f         Frequency (Hz), scalar   
-% sigma     DC electrical conductivity (S/m), scalar or vector
+% sigma     DC Electrical Conductivity (S/m), scalar or vector
 %
 % Outputs:
-% eps_ice   Complex relative permittivity 
+% eps_ice   Relative Permittivity, scalar or vector
 %
 % Source:
 % Matzler et al. (2006)

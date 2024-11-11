@@ -11,7 +11,7 @@ function eps_ice = ice_debye(T,f,sigma)
 % sigma     DC electrical conductivity (S/m), scalar or vector
 %
 % Outputs:
-% eps_ice   Complex relative permittivity 
+% eps_ice   Relative permittivity, scalar or vector
 %
 % Source:
 % Kawada (1978) in Matsuoka et al. (1996)
