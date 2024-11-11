@@ -1,5 +1,5 @@
 function [alpha, Na] = EMalpha(eps_r,f)
-% Computes the attenuation constant and  one-way attenutaion rate in dB/m
+% Computes the attenuation constant and one-way attenutaion rate in dB/m
 % using the relative complex permittivity.
 %
 % Inputs:

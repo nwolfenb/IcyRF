@@ -11,11 +11,14 @@ function eps_eff = mixing_shape(eps_e,eps_i,f,N,orientation,model)
 % eps_i         Permittivity of the inclusion (scalar)
 % f             Volume fraction of inclusion (scalar or vector)
 % N             Shape factor, [Nx Ny Nz] (vector)
+%               Spheres:    [1/3 1/3 1/3]
+%               Discs:      [1 0 0]
+%               Needles:    [0 1/2 1/2]
 % orientation   "aligned" or "random" (string)
-% model         "Maxwell Garnett" or "Polder-van Santen"
+% model         "Maxwell Garnett" or "PVD"
 %
 % Outputs:
-% eps_eff   Effective permittivity (vector)
+% eps_eff   Effective permittivity (scalar or vector)
 %
 % Source:
 % Sihvola, A. H. (1999). Electromagnetic mixing formulas and applications
@@ -39,20 +42,19 @@ end
 
 %% Mixing
 if strcmp(model,'Maxwell Garnett')
+    % Sihvola (1999) 
     if strcmp(orientation,'aligned')
-        % Sihvola (1999) 
         eps_eff = eps_e + f*eps_e*(eps_i-eps_e)./(eps_e+(1-f).*N*(eps_i-eps_e));
-    elseif strcmp(orientation,'random')
-        % Sihvola (1999) 
+    elseif strcmp(orientation,'random')   
         sigma_num = (eps_i-eps_e)./(eps_e+N*(eps_i-eps_e));
         sigma_den = N*(eps_i-eps_e)./(eps_e+N*(eps_i-eps_e));
         eps_eff = eps_e + eps_e*((f/3)*sum(sigma_num)./(1-(f/3)*sum(sigma_den)));
     else
         error('Input variable orientation must be either "random" or "aligned".')
     end
-elseif strcmp(model,'Polder-van Santen')
+elseif strcmp(model,'PVD')
+    % Shokr (1998)
     if strcmp(orientation,'aligned')
-        % Shokr (1998) 
         for n = 1:length(N)
             a = (1-N(n))*ones(size(f));
             b = N(n)*eps_i-eps_e+N(n)*eps_e-f*(eps_i-eps_e);
@@ -62,10 +64,15 @@ elseif strcmp(model,'Polder-van Santen')
             eps_eff(:,n) = max(eps_roots,[],2,'ComparisonMethod','real');
         end
     elseif strcmp(orientation,'random')
-        % Sihvola (1999)
-        error('Random Polder-van Santen for randomly orientated inclusions not yet implemented.')
+        N = mean(N);
+        a = (1-N)*ones(size(f));
+        b = N*eps_i-eps_e+N*eps_e-f*(eps_i-eps_e);
+        c = -N*eps_e*eps_i*ones(size(f));
+        eps_roots = cellfun(@roots, num2cell([a b c], 2), 'UniformOutput', false);
+        eps_roots = cell2mat(eps_roots').';
+        eps_eff = max(eps_roots,[],2,'ComparisonMethod','real');
     end
 else
-    error('Model must be either "Maxwell Garnett" or "Polder-van Santen".')
+    error('Model must be either "Maxwell Garnett" or "PVD".')
 end
 end

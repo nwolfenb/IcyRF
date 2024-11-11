@@ -21,7 +21,7 @@ function eps_eff = mixing(eps_e,eps_i,f,v)
 %           v=3: Coherent Potential
 %
 % Outputs:
-% eps_eff   Effective permittivity (vector)
+% eps_eff   Effective permittivity (scalar or vector)
 %
 % Source: 
 % Sihvola, A. (2013). Homogenization principles and effect of mixing on
