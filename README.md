@@ -3,7 +3,8 @@ Code base to support RF remote sensing of icy environments.
 
 ## Functions
 ```
-eps_eff = debye(eps_s,eps_inf,tau,f,sigma)
+eps_r = colecole(eps_inf,delta_eps,tau,alpha,f,sigma)
+eps_r = debye(eps_s,eps_inf,tau,f,sigma)
 [alpha, Na] = EMalpha(eps_r,f)
 [r,R] = EMcoef(eps_r1,eps_r2)
 eps_ice = ice_debye(T,f,sigma)
@@ -15,6 +16,8 @@ eps_water = water_permittivity(T,f)
 ```
 
 ## Function Descriptions
+`colecole(eps_inf,delta_eps,tau,alpha,f,sigma)` calculates the relative permittivity using the Cole-Cole model.
+
 `debye(eps_s,eps_inf,tau,f,sigma` calculates the relative permittivity using the single-relaxation Debye model.
 
 `EMalpha(eps_r,f)` calculates the attenuation constant and  one-way attenutaion rate in dB/m from the complex relative permittivity and frequency.
