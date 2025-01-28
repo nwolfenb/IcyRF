@@ -9,6 +9,7 @@ eps_r = debye(eps_s,eps_inf,tau,f,sigma)
 [r,R] = EMcoef(eps_r1,eps_r2)
 eps_ice = ice_debye(T,f,sigma)
 eps_ice = ice_gough(T)
+eps_ice = ice_matzler(T,f)
 eps_ice = ice_permittivity(T,f,sigma)
 eps_eff = mixing(eps_e,eps_i,f,v)
 eps_eff = mixing_shape(eps_e,eps_i,f,N,orientation,model)
@@ -27,6 +28,8 @@ eps_water = water_permittivity(T,f)
 `ice_debye(T,f,sigma)` calculates the relative permittivity of ice using the single-relaxation Debye model and the Debye parameters of Kawada (1978) in Matsuoka et al. (1996) and Gough et al. (1972).
 
 `ice_gough(T)` calculates the high frequency relative permittivity of ice as a function of temperature using the empirical model of Gough et al. (1972).
+
+`ice_matzler(T,f)` calculates the relative permittivity of ice as a function of temperature using the semi-empirical model of Matzler (2006).
 
 `mixing(eps_e,eps_i,f,v)` calculates the effective permittivity based on the permittivity of the environment and the volume fraction and permittivity of the inclusion.
 
