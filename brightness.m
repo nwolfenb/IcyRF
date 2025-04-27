@@ -64,7 +64,7 @@ end
 k_extinction = k_absorption+k_scattering;
 
 % brightness temperature contribution from the medium
-Tb_1 = (1-rs)*((T.*k_absorption.*exp(-cumtrapz(z,k_extinction))));
+Tb_1 = (1-rs)*((T.*k_absorption.*exp(-cumtrapz(z,k_absorption))));
 Tb_z1 = -flipud(cumtrapz(flipud(z),flipud(Tb_1)));
 
 % brightness temperature contribution from the base
@@ -72,7 +72,7 @@ att_2 = exp(cumtrapz(flipud(z),flipud(k_extinction)));
 Tb_z2 = (1-rs)*((1-rb)*T(end)*flipud(att_2));
 
 % downwelling brightness temperature contribution
-Tb_1d = flipud((1-rs)*(flipud(T.*k_absorption).*exp(cumtrapz(flipud(z),flipud(k_extinction)))));
+Tb_1d = flipud((1-rs)*(flipud(T.*k_absorption).*exp(cumtrapz(flipud(z),flipud(k_absorption)))));
 Tb_z1d = cumtrapz(z,Tb_1d);
 Tb_z3 = (1-rs)*(rb*Tb_z1d(end)*flipud(att_2));
 
