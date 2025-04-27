@@ -3,7 +3,7 @@ Code base to support RF remote sensing of icy environments.
 
 ## Functions
 ```
-[Tb, Tb_z, Tb1, Tb2] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps_rp)
+[Tb, Tb_z, Tb1, Tb2, Tb3] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps_rp)
 eps_r = colecole(eps_inf,delta_eps,tau,alpha,f,sigma)
 eps_r = debye(eps_s,eps_inf,tau,f,sigma)
 [alpha, Na] = EMalpha(eps_r,f)
@@ -20,7 +20,7 @@ eps_water = water_permittivity(T,f)
 ```
 
 ## Function Descriptions
-`brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps_rp)` calculates the microwave brightness temperature using a "cloud" model
+`brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps_rp)` calculates the microwave brightness temperature using a "cloud" model.
 
 `colecole(eps_inf,delta_eps,tau,alpha,f,sigma)` calculates the relative permittivity using the Cole-Cole model.
 

@@ -1,11 +1,11 @@
-function [Tb, Tb_z, Tb1, Tb2] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps_rp)
+function [Tb, Tb_z, Tb1, Tb2, Tb3] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps_rp)
 % Calculates the microwave brightness temperature using a "cloud" model.
 % The cloud model is derived from the radiative transfer equation ignoring
 % the source term from scattering and all intermediate reflections,
 % including reflections from the top interface.
 %
 % Syntax:
-% [Tb, Tb_z, Tb1, Tb2] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps_rp)
+% [Tb, Tb_z, Tb1, Tb2, Tb3] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps_rp)
 %
 % Inputs:
 % T         Temperature (C), vector
@@ -26,9 +26,12 @@ function [Tb, Tb_z, Tb1, Tb2] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps_rp)
 %           the effect of surface transmission
 % Tb1       Brightness temperature contribution from medium (K), scalar
 % Tb2       Brightness temperature contribution from base (K), scalar
+% Tb3       Brightness temperature contribution from reflected downwelling
+%           (K), scalar
 %
 % Source:
 % Tan et al. (2015)
+% *does not include reflected downwelling term
 %
 % Author:
 % Natalie Wolfenbarger
@@ -61,15 +64,20 @@ end
 k_extinction = k_absorption+k_scattering;
 
 % brightness temperature contribution from the medium
-Tb_1 = (1-rs)*((T.*k_absorption.*exp(-cumtrapz(z,k_absorption))));
+Tb_1 = (1-rs)*((T.*k_absorption.*exp(-cumtrapz(z,k_extinction))));
 Tb_z1 = -flipud(cumtrapz(flipud(z),flipud(Tb_1)));
 
 % brightness temperature contribution from the base
 att_2 = exp(cumtrapz(flipud(z),flipud(k_extinction)));
 Tb_z2 = (1-rs)*((1-rb)*T(end)*flipud(att_2));
 
+% downwelling brightness temperature contribution
+Tb_1d = flipud((1-rs)*(flipud(T.*k_absorption).*exp(cumtrapz(flipud(z),flipud(k_extinction)))));
+Tb_z1d = cumtrapz(z,Tb_1d);
+Tb_z3 = (1-rs)*(rb*Tb_z1d(end)*flipud(att_2));
+
 % cumulative brightness temperature
-Tb_z = Tb_z1 + Tb_z2;
+Tb_z = Tb_z1 + Tb_z2 + Tb_z3;
 
 % brightness temperature contribution from the medium
 Tb1 = Tb_z1(1);
@@ -77,8 +85,11 @@ Tb1 = Tb_z1(1);
 % brightness temperature contribution from the base
 Tb2 = Tb_z2(1);
 
+% brightness temperature contribution from the reflected downwelling
+Tb3 = Tb_z3(1);
+
 % brightness temperature
-Tb = Tb1 + Tb2 + rs*Tsky;
+Tb = Tb1 + Tb2 + Tb3 + rs*Tsky;
 
 end
 
