@@ -5,6 +5,7 @@ function [Tb, Tb_z, Tb1, Tb2, Tb3] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps
 % including reflections from the top interface.
 %
 % Syntax:
+% [Tb, Tb_z, Tb1, Tb2, Tb3] = brightness(T,z,eps_r,rs,rb,f,Tsky)
 % [Tb, Tb_z, Tb1, Tb2, Tb3] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps_rp)
 %
 % Inputs:
@@ -15,6 +16,8 @@ function [Tb, Tb_z, Tb1, Tb2, Tb3] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps
 % rb        Basal power reflection coefficient, scalar
 % f         Frequency (Hz), scalar   
 % Tsky      Sky background temperature, scalar
+%
+% Optional Inputs:
 % phi       Particle volume fraction (porosity), scalar or vector
 % r         Particle radius (m), scalar or vector
 % eps_rp    Particle relative permittivity, scalar or vector
@@ -22,8 +25,6 @@ function [Tb, Tb_z, Tb1, Tb2, Tb3] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps
 % Outputs:
 % Tb        Brightness temperature (K), scalar
 % Tb_z      Cumulative brightness temperature (K), vector
-%           Defined as the brightness temperature at a depth, z, including
-%           the effect of surface transmission
 % Tb1       Brightness temperature contribution from medium (K), scalar
 % Tb2       Brightness temperature contribution from base (K), scalar
 % Tb3       Brightness temperature contribution from reflected downwelling
@@ -36,7 +37,7 @@ function [Tb, Tb_z, Tb1, Tb2, Tb3] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps
 % Author:
 % Natalie Wolfenbarger
 % nswolfen@gmail.com
-%
+
 %% Brightness Temperature
 
 % absorption
@@ -77,7 +78,7 @@ Tb_z1d = cumtrapz(z,Tb_1d);
 Tb_z3 = (1-rs)*(rb*Tb_z1d(end)*flipud(att_2));
 
 % cumulative brightness temperature
-Tb_z = Tb_z1 + Tb_z2 + Tb_z3;
+Tb_z = Tb_z1 + Tb_z2(1) + Tb_z3(1);
 
 % brightness temperature contribution from the medium
 Tb1 = Tb_z1(1);
