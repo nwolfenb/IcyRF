@@ -24,7 +24,7 @@ function [Tb, Tb_z, Tb1, Tb2, Tb3] = brightness(T,z,eps_r,rs,rb,f,Tsky,phi,r,eps
 %
 % Outputs:
 % Tb        Brightness temperature (K), scalar
-% Tb_z      Cumulative brightness temperature (K), vector
+% Tb_z      Brightness temperature as a function of depth (K), vector
 % Tb1       Brightness temperature contribution from medium (K), scalar
 % Tb2       Brightness temperature contribution from base (K), scalar
 % Tb3       Brightness temperature contribution from reflected downwelling
