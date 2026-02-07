@@ -25,7 +25,7 @@ function [Es, Ea, Ee, Eb] = Mie_scattering(r, f, epsp, epsb)
 % nswolfen@gmail.com
 %
 %%
-c = 3e8; % m/s
+c = 299792458; % m/s
 epsb_real = real(epsb);
 
 np = sqrt(epsp); % index of refraction of spherical particle

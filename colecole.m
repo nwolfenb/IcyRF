@@ -21,17 +21,6 @@ function eps_r = colecole(eps_inf,delta_eps,tau,alpha,f,sigma)
 % Author:
 % Natalie Wolfenbarger
 % nswolfen@gmail.com
-%
-%% Input Check
-if ~isscalar(f)
-    if isrow(f)
-        error('Frequency must be either a scalar or a column vector.')
-    end
-end
-
-if ~isrow(delta_eps) || ~isrow(tau) || ~isrow(alpha)
-    error('Dielectric susceptibility, relaxation time, and cole-cole distribution parameter must be either a scalar or a row vector.')
-end
 
 %% Cole-Cole
 eps_0 = 8.854e-12;

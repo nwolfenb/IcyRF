@@ -42,19 +42,20 @@ end
 
 %% Mixing
 if strcmp(model,'Maxwell Garnett')
-    % Sihvola (1999) 
     if strcmp(orientation,'aligned')
+        % Sihvola (1999) 
         eps_eff = eps_e + f*eps_e*(eps_i-eps_e)./(eps_e+(1-f).*N*(eps_i-eps_e));
-    elseif strcmp(orientation,'random')   
+    elseif strcmp(orientation,'random')
+        % Sihvola (1999) 
         sigma_num = (eps_i-eps_e)./(eps_e+N*(eps_i-eps_e));
         sigma_den = N*(eps_i-eps_e)./(eps_e+N*(eps_i-eps_e));
         eps_eff = eps_e + eps_e*((f/3)*sum(sigma_num)./(1-(f/3)*sum(sigma_den)));
     else
         error('Input variable orientation must be either "random" or "aligned".')
     end
-elseif strcmp(model,'PVD')
-    % Shokr (1998)
+elseif strcmp(model,'Polder-van Santen')
     if strcmp(orientation,'aligned')
+        % Shokr (1998) 
         for n = 1:length(N)
             a = (1-N(n))*ones(size(f));
             b = N(n)*eps_i-eps_e+N(n)*eps_e-f*(eps_i-eps_e);
@@ -64,15 +65,10 @@ elseif strcmp(model,'PVD')
             eps_eff(:,n) = max(eps_roots,[],2,'ComparisonMethod','real');
         end
     elseif strcmp(orientation,'random')
-        N = mean(N);
-        a = (1-N)*ones(size(f));
-        b = N*eps_i-eps_e+N*eps_e-f*(eps_i-eps_e);
-        c = -N*eps_e*eps_i*ones(size(f));
-        eps_roots = cellfun(@roots, num2cell([a b c], 2), 'UniformOutput', false);
-        eps_roots = cell2mat(eps_roots').';
-        eps_eff = max(eps_roots,[],2,'ComparisonMethod','real');
+        % Sihvola (1999)
+        error('Random Polder-van Santen for randomly orientated inclusions not yet implemented.')
     end
 else
-    error('Model must be either "Maxwell Garnett" or "PVD".')
+    error('Model must be either "Maxwell Garnett" or "Polder-van Santen".')
 end
 end

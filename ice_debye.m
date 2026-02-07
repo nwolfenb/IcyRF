@@ -1,6 +1,7 @@
 function eps_ice = ice_debye(T,f,sigma)
-% Single relaxation Debye model for the complex relative permittivity of
-% ice
+% Calculates the relative permittivity of ice using the single-relaxation
+% Debye model and the Debye parameters of Kawada (1978) in Matsuoka et al.
+% (1996) and Gough et al. (1972).
 %
 % Syntax:
 % eps_ice = ice_debye(T,f,sigma)
@@ -20,20 +21,25 @@ function eps_ice = ice_debye(T,f,sigma)
 % Author:
 % Natalie Wolfenbarger
 % nswolfen@gmail.com
-%
-%%
+
+%% Convert Temperature to Column Vector
+if isrow(T)
+    T = T.';
+end
+
+%% Celcius to Kelvin
 T = T+273.15; % K
 
-% eps_s
+%% Static Permittivity
 eps_inf_ref = 3.1;
 C = 23700;
 Tc = 15; % K
 eps_s = C./(T-Tc)+eps_inf_ref;
 
-% eps_inf
+%% High Frequency Permittivity
 eps_inf = ice_gough(T-273.15);
 
-% tau
+%% Relaxation Time
 Tcrit = 223; % K
 
 tau0(1) = 5.3e-16;
@@ -44,6 +50,7 @@ tau0(2) = tau0(1)*exp(E(1)/(R*Tcrit))/exp(E(2)/(R*Tcrit));
 tau = tau0(1)*exp(E(1)./(R*T));
 tau(T<=Tcrit) = tau0(2)*exp(E(2)./(R*T(T<=Tcrit)));
 
+%% Single-Relaxation Debye Model
 eps_ice = debye(eps_s,eps_inf,tau,f,sigma);
 
 end
