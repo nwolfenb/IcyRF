@@ -19,17 +19,19 @@ function eps_ice = ice_matzler(T,f)
 % Author:
 % Natalie Wolfenbarger
 % nswolfen@gmail.com
-%
-%%
 
+%% Units
 T = T+273.15; % C to K
 f = f/1e9; % Hz to GHz
 
+%% Real Part
 eps_real = 3.1884+9.1e-4*(T-273.15);
 
+%% Debye Relaxation Term
 theta = 300./T-1;
 alpha = (0.00504+0.0062*theta).*exp(-22.1*theta);
 
+%% Infrared Absorption Tail
 B1 = 0.0207; % K/GHz
 b = 335; % K
 B2 = 1.16e-11; % GHz^-3

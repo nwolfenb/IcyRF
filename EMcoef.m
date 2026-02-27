@@ -19,8 +19,8 @@ function [r,R] = EMcoef(eps_r1,eps_r2)
 % Author:
 % Natalie Wolfenbarger
 % nswolfen@gmail.com
-%
-%%
+
+%% Fresnel Reflection Coefficient
 
 r = abs((sqrt(eps_r1)-sqrt(eps_r2))./(sqrt(eps_r1)+sqrt(eps_r2))).^2;
 R = 10*log10(r);

@@ -30,7 +30,7 @@ function eps_eff = mixing_shape(eps_e,eps_i,f,N,orientation,model)
 % Author:
 % Natalie Wolfenbarger
 % nswolfen@gmail.com
-%
+
 %% Check Inputs
 if isrow(f)
     f = f';

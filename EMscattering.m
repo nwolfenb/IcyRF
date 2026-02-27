@@ -24,8 +24,8 @@ function [alpha,Na] = EMscattering(r,f,epsp,epsb,phi)
 % Author:
 % Natalie Wolfenbarger
 % nswolfen@gmail.com
-%
-%%
+
+%% Mie Scattering Loss
 [~, ~, Ee, ~] = Mie_scattering(r, f, epsp, epsb); % Extinction efficiency factor (8-5.2)
 
 Qe = pi*r.^2.*Ee; % Extinction cross section (8-51)
@@ -34,4 +34,5 @@ N = phi./V; % Number of scatterers
 
 alpha = (N.*Qe)/2; % Extinction constant
 Na = 20*log10(exp(1))*alpha; % One-way attenuation rate (dB/m)
+
 end

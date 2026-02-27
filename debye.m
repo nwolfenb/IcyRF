@@ -22,7 +22,7 @@ function eps_r = debye(eps_s,eps_inf,tau,f,sigma)
 % Natalie Wolfenbarger
 % nswolfen@gmail.com
 
-%%
+%% Single Relaxation Debye Model
 eps_0 = 8.854e-12;
 eps_r = eps_inf +((eps_s-eps_inf)./(1+1j*2*pi*tau*f))-...
     1j*sigma./(2*pi*eps_0*f);

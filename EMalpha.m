@@ -20,7 +20,7 @@ function [alpha, Na] = EMalpha(eps_r,f)
 % Author:
 % Natalie Wolfenbarger
 % nswolfen@gmail.com
-%
+
 %% Constants
 mu0 = 1.25663706212e-6; % N/A^2
 eps0 = 8.8541878128e-12; % F/m

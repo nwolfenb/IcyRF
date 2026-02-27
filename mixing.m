@@ -32,7 +32,7 @@ function eps_eff = mixing(eps_e,eps_i,f,v)
 % Author:
 % Natalie Wolfenbarger
 % nswolfen@gmail.com
-%
+
 %% Check Inputs
 if isrow(f)
     f = f';

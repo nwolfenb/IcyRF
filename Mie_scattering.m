@@ -23,7 +23,7 @@ function [Es, Ea, Ee, Eb] = Mie_scattering(r, f, epsp, epsb)
 % Author:
 % Ulaby and Long (2014) modified by Natalie Wolfenbarger
 % nswolfen@gmail.com
-%
+
 %%
 c = 299792458; % m/s
 epsb_real = real(epsb);
@@ -32,8 +32,6 @@ np = sqrt(epsp); % index of refraction of spherical particle
 nb = sqrt(epsb); % index of refraction of background medium
 
 n = np./nb; % relative index of refraction (8.31a)
-
-
 
 lambda = c/f;
 chi = (2*pi*r/lambda)*sqrt(epsb_real); % normalized circumference in background (8.31b)

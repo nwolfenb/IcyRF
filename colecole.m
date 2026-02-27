@@ -16,7 +16,7 @@ function eps_r = colecole(eps_inf,delta_eps,tau,alpha,f,sigma)
 % eps_r         Relative Permittivity, scalar or vector
 %
 % Source:
-% Grimm 
+% Grimm et al. (2017)
 %
 % Author:
 % Natalie Wolfenbarger
