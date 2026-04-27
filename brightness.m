@@ -53,7 +53,7 @@ else
     else
         k_scattering = zeros(length(phi),1);
         for n = 1:length(phi)
-            [Es, ~, ~, ~] = Mie_scattering(r(n), f, eps_rp(n), eps_r(n));
+            [Es, ~, ~, ~] = Mie_scattering(r(n), f, eps_rp(n), real(eps_r(n)));
             V_scatter = 4/3*pi*r(n).^3;
             A_scatter = pi*r(n).^2;
             k_scattering(n) = phi(n)./V_scatter.*A_scatter.*Es;

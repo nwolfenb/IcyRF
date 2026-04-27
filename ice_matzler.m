@@ -6,11 +6,11 @@ function eps_ice = ice_matzler(T,f)
 % eps_ice = ice_matzler(T,f)
 %
 % Inputs:
-% T         Temperature (C), scalar or vector
+% T         Temperature (K), scalar or vector
 % f         Frequency (Hz), scalar   
 %
 % Outputs:
-% eps_ice   Complex relative permittivity 
+% eps_ice   Complex relative permittivity
 %
 % Source:
 % Matzler (2006)
@@ -21,7 +21,6 @@ function eps_ice = ice_matzler(T,f)
 % nswolfen@gmail.com
 
 %% Units
-T = T+273.15; % C to K
 f = f/1e9; % Hz to GHz
 
 %% Real Part

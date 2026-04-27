@@ -31,19 +31,19 @@ if abs(imag(epsb))>0
 end
 
 %% Check for Scalar Inputs
-if ~isscaler(r)
+if ~isscalar(r)
     error('Particle radius input, r, must be scalar.')
 end
 
-if ~isscaler(f)
+if ~isscalar(f)
     error('Frequency input, f, must be scalar.')
 end
 
-if ~isscaler(epsp)
+if ~isscalar(epsp)
     error('Particle permittivity input, epsp, must be scalar.')
 end
 
-if ~isscaler(epsb)
+if ~isscalar(epsb)
     error('Background permittivity input, epsb, must be scalar.')
 end
 

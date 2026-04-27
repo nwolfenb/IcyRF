@@ -6,7 +6,7 @@ function eps_water = water_permittivity(T,f)
 % eps_water = water_permittivity(T,f)
 %
 % Inputs:
-% T         Temperature (C), scalar or vector
+% T         Temperature (K), scalar or vector
 % f         Frequency (Hz), scalar of vector
 %
 % Outputs:
@@ -18,6 +18,14 @@ function eps_water = water_permittivity(T,f)
 % Author:
 % Natalie Wolfenbarger
 % nswolfen@gmail.com
+
+%% Convert Temperature to Column Vector
+if isrow(T)
+    T = T.';
+end
+
+%% Kelvin to Celcius
+T = T - 273.15;
 
 %% Debye Parameters
 eps_s = 88.045-0.4147*T+6.295e-4*T.^2+1.075e-5*T.^3; % static permittivity
